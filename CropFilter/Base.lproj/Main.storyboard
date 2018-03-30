@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nVc-6Q-sD8">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CropFilter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swift" translatesAutoresizingMaskIntoConstraints="NO" id="MrY-45-ssC">
+                                <rect key="frame" x="56" y="124" width="263" height="229"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="263" id="nIR-Ns-Qdr"/>
+                                    <constraint firstAttribute="height" constant="229" id="vlg-u5-Ky6"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VX0-pc-WWk">
+                                <rect key="frame" x="16" y="621" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="IBActionCancelCrop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ain-vI-51O"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iut-i1-UY9">
+                                <rect key="frame" x="325" y="621" width="34" height="30"/>
+                                <state key="normal" title="Crop"/>
+                                <connections>
+                                    <action selector="IBActionCropImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yqz-a1-rcM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wog-8k-H1k">
+                                <rect key="frame" x="127" y="621" width="121" height="30"/>
+                                <state key="normal" title="Show Crop Image"/>
+                                <connections>
+                                    <action selector="showCroppedImage" destination="BYZ-38-t0r" eventType="touchUpInside" id="A99-eP-fu6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Wog-8k-H1k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ngk-fX-MhO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VX0-pc-WWk" secondAttribute="bottom" constant="16" id="PTy-3W-L5m"/>
+                            <constraint firstItem="VX0-pc-WWk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Ui0-ek-p5J"/>
+                            <constraint firstItem="MrY-45-ssC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dG1-X1-Hwc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iut-i1-UY9" secondAttribute="bottom" constant="16" id="e5g-Wh-Qu4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iut-i1-UY9" secondAttribute="trailing" constant="16" id="eCI-8T-koC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Wog-8k-H1k" secondAttribute="bottom" constant="16" id="pyu-ux-asD"/>
+                            <constraint firstItem="MrY-45-ssC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="xyb-EJ-8QA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="alZ-K2-72r"/>
+                    <connections>
+                        <outlet property="imageView" destination="MrY-45-ssC" id="jYr-lB-NYu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="479.19999999999999" y="133.5832083958021"/>
+        </scene>
+        <!--Cropped Image Controller-->
+        <scene sceneID="LSx-W7-vvA">
+            <objects>
+                <viewController storyboardIdentifier="CroppedImageController" id="QVw-LR-kPF" customClass="CroppedImageController" customModule="CropFilter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kuD-42-3yg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swift" translatesAutoresizingMaskIntoConstraints="NO" id="tAb-pj-az7">
+                                <rect key="frame" x="56" y="80" width="263" height="229"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="229" id="8xC-ju-FIb"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="229" id="Dwb-JY-dj6"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="263" id="cNk-Ww-fWi"/>
+                                    <constraint firstAttribute="width" constant="263" id="uo0-4R-5Lh"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tAb-pj-az7" firstAttribute="centerX" secondItem="kuD-42-3yg" secondAttribute="centerX" id="Zsp-Pb-4dr"/>
+                            <constraint firstItem="tAb-pj-az7" firstAttribute="top" secondItem="YF1-mM-Zw7" secondAttribute="top" constant="60" id="cUu-kC-xCA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YF1-mM-Zw7"/>
+                    </view>
+                    <connections>
+                        <outlet property="croppedImageView" destination="tAb-pj-az7" id="boR-Y5-DUi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AUI-UY-Ave" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1320.8" y="134.48275862068968"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7GR-fP-JYh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nVc-6Q-sD8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PaG-Gu-NXg">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="wfj-3c-ze2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ro4-ns-iiA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-279" y="134"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="swift" width="1200" height="1200"/>
+    </resources>
+</document>
