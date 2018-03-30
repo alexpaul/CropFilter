@@ -20,6 +20,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>CropFilter uses your Camera to take photos for cropping</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>CropFilter saves your Filtered Images to Camera Roll</string>
 	<key>UILaunchStoryboardName</key>

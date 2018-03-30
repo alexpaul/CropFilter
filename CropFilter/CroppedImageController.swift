@@ -34,6 +34,7 @@ class CroppedImageController: UIViewController {
     
     private let ciFilterNames = [
         "CIPhotoEffectChrome",
+        "CIPhotoEffectMono", 
         "CIPhotoEffectFade",
         "CIPhotoEffectInstant",
         "CIPhotoEffectNoir",

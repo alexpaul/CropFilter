@@ -7,30 +7,40 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
+    private let imagePickerController = UIImagePickerController()
+    
     //Update this for path line color
-    let strokeColor:UIColor = UIColor.blue
+    private let strokeColor: UIColor = UIColor.blue
     
     //Update this for path line width
-    let lineWidth:CGFloat = 2.0
+    private let lineWidth: CGFloat = 2.0
     
     //Path to draw while touch events occur
-    var path = UIBezierPath()
+    private var path = UIBezierPath()
     
     //ShapeLayer of cropped view
-    var shapeLayer = CAShapeLayer()
+    private var shapeLayer = CAShapeLayer()
     
     //Final Cropped Image
-    var croppedImage = UIImage()
+    private var croppedImage = UIImage()
 
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.clipsToBounds = true 
+        setupImagePickerController()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Library", style: .plain, target: self, action: #selector(showPhotoLibrary))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(showCamera))
     }
-    
+}
+
+// MARK:- Cropping Functions
+extension ViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first as UITouch?{
             let touchPoint = touch.location(in: imageView)
@@ -110,7 +120,61 @@ class ViewController: UIViewController {
         croppedVC.image = croppedImage
         navigationController?.pushViewController(croppedVC, animated: true)
     }
-    
 }
 
+// MARK:- Camera Functions
+extension ViewController {
+    private func setupImagePickerController() {
+        imagePickerController.delegate = self
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            //cameraButtonItem.isEnabled = false
+        }
+    }
+    
+    private func showPickerController() {
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    private func checkAVAuthorizationStatus() {
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        switch status {
+        case .authorized:
+            print("authorized")
+            showPickerController()
+        case .denied:
+            print("denied")
+        case .restricted:
+            print("restricted")
+        case .notDetermined:
+            print("nonDetermined")
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted) in
+                if granted {
+                    self.showPickerController()
+                }
+            })
+        }
+    }
+    
+    @objc private func showPhotoLibrary() {
+        checkAVAuthorizationStatus()
+        imagePickerController.sourceType = .photoLibrary
+    }
+    
+    @IBAction private func showCamera(_ sender: UIBarButtonItem) {
+        checkAVAuthorizationStatus()
+        imagePickerController.sourceType = .camera
+    }
+}
+
+// MARK:- UIImagePickerControllerDelegate
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        imageView.image = image
+        dismiss(animated: true, completion: nil)
+    }
+}
 
