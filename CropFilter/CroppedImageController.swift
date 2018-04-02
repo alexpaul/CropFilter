@@ -63,6 +63,18 @@ class CroppedImageController: UIViewController {
         "CILineOverlay",
         "CIPixellate",
         "CIPointillize",
+        //"CIColorCrossPolynomial",
+        //"CIColorCube",
+        //"CIColorCubeWithColorSpace",
+        "CIMotionBlur",
+        "CIZoomBlur",
+        //"CIWhitePointAdjust",
+        //"CIAffineTile",
+        //"CIEightfoldReflectedTile",
+        "CIKaleidoscope",
+        //"CIOpTile",
+        //"CISixfoldRotatedTile",
+        //"CITriangleTile",
         "CISpotColor"
     ]
     

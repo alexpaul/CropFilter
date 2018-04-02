@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     
     //Final Cropped Image
     private var croppedImage = UIImage()
-
+    
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
